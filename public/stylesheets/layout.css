@@ -127,6 +127,9 @@ body {
   background:-webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ffffff));
   padding: 5px;
 }
+.buttons.delete {
+  bottom:44px;
+}
 
 .buttons a {
   display: inline-block;

@@ -1,4 +1,5 @@
-<form action="{{action}}" method="{{method}}" class="note-form">
+<form action="{{action}}" class="note-form" method="post">
+  <input type="hidden" name="_method" value="{{method}}">
   <div class="fields">
     {{#note}}
       <input type="text" name="note[title]" value="{{title}}" placeholder="title">
@@ -7,6 +8,11 @@
   </div>
   <div class="buttons">
     <input type="submit" value="Save">
-    <input type="submit" value="Delete" class="delete">
+  </div>
+</form>
+<form action="{{action}}" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <div class="buttons delete">
+    <input type="submit" value="Delete">
   </div>
 </form>
