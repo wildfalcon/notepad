@@ -3,39 +3,8 @@
 <head>
   <title>Notepad</title>
   <%= stylesheet_link_tag :all %>
-
   <%= yield :head %>
-
-  <script src="/javascripts/vendor/jquery-1.4.4.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/vendor/davis-0.3.2.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/vendor/davis.title.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/vendor/davis.google_analytics.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/vendor/js-model-0.9.4.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/vendor/handlebars.js" type="text/javascript" charset="utf-8"></script>
-
-  <script src="/javascripts/lib/view.js" type="text/javascript" charset="utf-8"></script>
-
-  <script src="/javascripts/models/note.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/views/note_form_view.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/views/note_list_view.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/app.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/javascripts/boot.js" type="text/javascript" charset="utf-8"></script>
-
   <%= csrf_meta_tag %>
-
-  <script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-6178997-5']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-  </script>
 </head>
 <body>
 <div id="main">
