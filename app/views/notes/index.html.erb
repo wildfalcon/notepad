@@ -1,8 +1,65 @@
-<%= render :partial => 'note_list', :locals => {:notes => @notes} %>
+<script type="text/javascript" charset="utf-8">
+  $(function(){
+    function note(title, body) {
+      
+      return {
+        title: ko.observable(title),
+        body:  ko.observable(body)
+      }
+    }
 
+    var viewModel = {
+      currentNote: ko.observable(),
+      notes: ko.observableArray(),
+      addNote: function(evt){
+        this.notes.push(new note("Untitled Note", ""));
+        evt.stopPropagation;
+        evt.prevetDefault;
+        return false;
+      }
+    }
+    
+    <% @notes.each do |note| %>
+      viewModel.notes.push(new note("<%= note.title %>", "<%= note.body %>"));
+    <% end %>
+    viewModel.currentNote(viewModel.notes()[0])
+    ko.applyBindings(viewModel)
+  });
+</script>
 
-<div id="note-form-container">
-  <div id="logo">
-    <img src="/images/logo.png"/>
+<script id="note" type="text/html" charset="utf-8">
+  <li> ${ $data.title }</li>
+</script>
+
+<script id="noteTemplate" type="text/html">
+ <form class="note-form">
+    <div class="fields"> 
+      <input id="note_title" size="30" type="text" data-bind="value: title"/> 
+      <textarea cols="40" id="note_body" rows="20" data-bind="text: body"></textarea> 
+    </div> 
+    <div class="buttons"> 
+      <input id="note_submit" name="commit" type="submit" value="Update Note" /> 
+    </div> 
+  </form> 
+ 
+  <form> 
+    <div class="buttons delete"> 
+     <input type="submit" value="Delete"> 
+    </div> 
+  </form>
+
+</script>
+
+<div id="note-list-container">
+  <ul class="note-list" data-bind="template: {name: 'note', foreach: notes}">
+  </ul>
+  <div class="buttons">
+    <a href="/notes/new" data-bind="click: addNote">+</a>
   </div>
 </div>
+
+
+
+<div id="note-form-container" data-bind="template: {name: 'noteTemplate', data: currentNote}">
+</div>
+
