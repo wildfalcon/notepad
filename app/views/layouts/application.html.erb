@@ -3,7 +3,11 @@
 <head>
   <title>Notepad</title>
   <%= stylesheet_link_tag :all %>
-  <%= yield :head %>
+  <%= javascript_include_tag [
+    "jquery-1.6.1.min",
+    "jquery.tmpl.min.js",
+    "knockout-1.2.1"
+  ] %>
   <%= csrf_meta_tag %>
 </head>
 <body>

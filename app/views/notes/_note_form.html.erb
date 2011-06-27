@@ -1,0 +1,20 @@
+<% form_for(note, :html => {:class => "note-form"}) do |f| %>
+  <div class="fields">
+    <%= f.text_field :title %>
+    <%= f.text_area  :body %>
+  </div>
+  <div class="buttons">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<% unless note.new_record? %>
+  <form action="<%= note_path(note) %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <div class="buttons delete">
+      <input type="submit" value="Delete">
+    </div>
+  </form>
+<% end %>
