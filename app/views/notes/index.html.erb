@@ -4,13 +4,17 @@
       
       return {
         title: ko.observable(title),
-        body:  ko.observable(body)
+        body:  ko.observable(body),
+        
       }
     }
 
     var viewModel = {
       currentNote: ko.observable(),
       notes: ko.observableArray(),
+      makeCurrent: function(note){
+        viewModel.currentNote(note);
+      },
       addNote: function(evt){
         this.notes.push(new note("Untitled Note", ""));
         evt.stopPropagation;
@@ -27,8 +31,8 @@
   });
 </script>
 
-<script id="note" type="text/html" charset="utf-8">
-  <li> ${ $data.title }</li>
+<script id="noteItemTemplate" type="text/html" charset="utf-8">
+  <li data-bind="click: function(){$item.makeCurrent($data)}"> ${ $data.title }</li>
 </script>
 
 <script id="noteTemplate" type="text/html">
@@ -51,7 +55,11 @@
 </script>
 
 <div id="note-list-container">
-  <ul class="note-list" data-bind="template: {name: 'note', foreach: notes}">
+  <ul class="note-list" data-bind="template: {name: 'noteItemTemplate', 
+                                              foreach: notes,
+                                              templateOptions: {
+                                                makeCurrent: makeCurrent
+                                              } }">
   </ul>
   <div class="buttons">
     <a href="/notes/new" data-bind="click: addNote">+</a>
