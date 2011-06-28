@@ -24,6 +24,12 @@
       makeCurrent: function(note){
         viewModel.currentNote(note);
       },
+      removeNote: function(note){
+        viewModel.notes.remove(note);
+        if (viewModel.currentNote() == note){
+          viewModel.currentNote(viewModel.notes()[0])
+        }
+      },
       addNote: function(evt){
         this.notes.push(new note("Untitled Note", ""));
         evt.stopPropagation;
@@ -54,7 +60,8 @@
  
   <form> 
     <div class="buttons delete"> 
-     <input type="submit" value="Delete"> 
+     <input type="submit" value="Delete" data-bind="click: function(){$item.removeNote($data)}"> 
+     <input type="submit" value="Clear" data-bind="click: clear"> 
     </div> 
   </form>
 
@@ -74,6 +81,10 @@
 
 
 
-<div id="note-form-container" data-bind="template: {name: 'noteTemplate', data: currentNote}">
+<div id="note-form-container" data-bind="template: {name: 'noteTemplate', 
+                                                    data: currentNote,
+                                                    templateOptions: {
+                                                      removeNote: removeNote
+                                                    }}">
 </div>
 
