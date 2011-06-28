@@ -31,7 +31,7 @@
         }
       },
       addNote: function(evt){
-        this.notes.push(new note("Untitled Note", ""));
+        viewModel.notes.push(new note("Untitled Note", ""));
         evt.stopPropagation;
         evt.prevetDefault;
         return false;
