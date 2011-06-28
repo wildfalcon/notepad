@@ -2,11 +2,20 @@
   $(function(){
     function note(title, body) {
       
-      return {
+      var note =  {
         title: ko.observable(title),
         body:  ko.observable(body),
-        
+        clear: function(){
+          note.body("");
+        }
       }
+      
+      note.title.subscribe(function(newValue){
+              console.log("note is set to: ", note);
+              console.log("Just changed title to: "+ newValue);
+            })
+            
+      return note;
     }
 
     var viewModel = {
